@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Card, Button } from 'antd';
-// import TableList from './TableList';
+import TableList from './TableList';
 
 function List(props: RouteComponentProps<string>) {
   const { history } = props;
@@ -13,6 +13,7 @@ function List(props: RouteComponentProps<string>) {
           添加作者
         </Button>
       </div>
+      <TableList />
     </Card>
   );
 }
