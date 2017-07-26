@@ -4,7 +4,7 @@ import { Table } from 'antd';
 import { Link } from 'react-router-dom';
 import DelButton from './DelButton';
 
-interface DataType {
+interface Author {
   key: number;
   id: number;
   name: string;
@@ -13,7 +13,7 @@ interface DataType {
 }
 
 interface TableListProps {
-  data: DataType[];
+  data: Author[];
 }
 
 function TableList(props: TableListProps) {
