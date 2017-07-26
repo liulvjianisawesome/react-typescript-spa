@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, Form, Input, DatePicker, Button, message } from 'antd';
 import { RouteComponentProps } from 'react-router-dom';
+import * as moment from 'moment';
 
 interface Author {
   name: string;
@@ -9,7 +10,7 @@ interface Author {
 }
 interface Props extends RouteComponentProps<string> {
   form: any;
-  data: Author[];
+  data: Author;
 }
 
 class Edit extends React.Component<Props, {}> {
@@ -26,8 +27,19 @@ class Edit extends React.Component<Props, {}> {
   handelCancel() {
     this.props.history.goBack();
   }
+
+  componentDidMount() {
+    const data = this.props.data;
+    this.props.form.setFieldsValue({
+      name: data.name,
+      birthday: moment(data.birthday),
+      nationality: data.nationality
+    });
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
+
     const formItemLayout = {
       labelCol: {
         xs: { span: 24, offset: 1 },
@@ -38,6 +50,7 @@ class Edit extends React.Component<Props, {}> {
         sm: { span: 5 },
       },
     };
+
     return (
       <Card title="作者编辑">
         <div style={{ padding: 20 }}>
@@ -62,4 +75,8 @@ class Edit extends React.Component<Props, {}> {
   }
 }
 
-export default Form.create()(Edit);
+interface FormProps extends RouteComponentProps<string> {
+  data: Author;
+}
+
+export default Form.create<FormProps>()(Edit);
