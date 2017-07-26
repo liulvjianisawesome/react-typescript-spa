@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal } from 'antd';
+import { Modal, message } from 'antd';
 
 interface Props {
   data: {
@@ -13,8 +13,10 @@ interface State {
 class DelButton extends React.Component<Props, State> {
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this);
     this.state = { visible: false };
+    this.showModal = this.showModal.bind(this);
+    this.handleOk = this.handleOk.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
   showModal() {
     this.setState({
@@ -25,6 +27,7 @@ class DelButton extends React.Component<Props, State> {
     this.setState({
       visible: false,
     });
+    message.success('删除成功');
   }
   handleCancel() {
     this.setState({
@@ -32,15 +35,11 @@ class DelButton extends React.Component<Props, State> {
     });
   }
 
-  handleClick() {
-    // const { data, onSuccess } = this.props;
-  }
-
   render() {
     const { data } = this.props;
     return (
-      <div>
-        <a href="javascript:;" onClick={this.handleClick}>删除</a>
+      <span>
+        <a href="javascript:;" onClick={this.showModal}>删除</a>
         <Modal
           title="Warning"
           visible={this.state.visible}
@@ -49,7 +48,7 @@ class DelButton extends React.Component<Props, State> {
         >
           <p>确定要删除{data.name}吗</p>
         </Modal>
-      </div>
+      </span>
     );
   }
 }
