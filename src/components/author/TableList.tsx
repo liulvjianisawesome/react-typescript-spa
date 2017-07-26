@@ -2,6 +2,7 @@ import * as React from 'react';
 // import { Link } from 'react-router-dom';
 import { Table } from 'antd';
 import { Link } from 'react-router-dom';
+import DelButton from './DelButton';
 
 interface DataType {
   key: number;
@@ -32,7 +33,7 @@ function TableList(props: TableListProps) {
             <span>
               <Link to={`/author/edit/${text.id}`}>编辑</Link>
               {' '}
-              <a>删除</a>
+              <DelButton data={text} />
             </span>
           )
         }
