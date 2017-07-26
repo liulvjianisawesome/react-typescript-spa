@@ -14,7 +14,7 @@ class App extends React.Component<{}, {}> {
             <div className="header">
               <div className="logo">
                 React Example
-          </div>
+              </div>
             </div>
 
             <div className="menu">
