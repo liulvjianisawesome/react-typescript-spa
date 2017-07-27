@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { Modal, message } from 'antd';
+import * as refetch from 'refetch';
 
 interface Props {
   data: {
     name: string;
+    id: number;
   };
+  onSuccess: () => void;
 }
 interface State {
   visible: boolean;
 }
 
 class DelButton extends React.Component<Props, State> {
+
   constructor() {
     super();
     this.state = { visible: false };
@@ -27,7 +31,15 @@ class DelButton extends React.Component<Props, State> {
     this.setState({
       visible: false,
     });
-    message.success('删除成功');
+    const { data, onSuccess } = this.props;
+    refetch.delete('http://localhost:4000/api/author', { id: data.id }).then((res) => {
+      if (res.data) {
+        onSuccess();
+        message.success('删除成功');
+      } else {
+        message.error('删除失败');
+      }
+    });
   }
   handleCancel() {
     this.setState({

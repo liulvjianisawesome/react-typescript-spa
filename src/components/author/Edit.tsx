@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Card, Form, Input, DatePicker, Button, message } from 'antd';
 import { RouteComponentProps } from 'react-router-dom';
 import * as moment from 'moment';
+import fetch from '../../hoc/fetch';
+import * as refetch from 'refetch';
 
 interface Author {
   name: string;
@@ -21,7 +23,16 @@ class Edit extends React.Component<Props, {}> {
   }
 
   handleSubmit() {
-    message.info(this.props.form.getFieldsValue().birthday.format('YYYY-MM-DD'));
+    let data = this.props.form.getFieldsValue();
+    data.birthday = data.birthday.format('YYYY-MM-DD');
+    refetch.post('http://localhost:4000/api/author/', data).then((res) => {
+      if (res.data) {
+        this.props.history.push('/author');
+        message.success('保存成功');
+      } else {
+        message.error(res.error);
+      }
+    });
   }
 
   handelCancel() {
@@ -79,4 +90,4 @@ interface FormProps extends RouteComponentProps<string> {
   data: Author;
 }
 
-export default Form.create<FormProps>()(Edit);
+export default fetch(Form.create<FormProps>()(Edit));

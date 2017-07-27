@@ -3,25 +3,31 @@ import * as React from 'react';
 import { Table } from 'antd';
 import { Link } from 'react-router-dom';
 import DelButton from './DelButton';
+import fetch from '../../hoc/fetch';
 
 interface Author {
-  key: number;
   id: number;
   name: string;
   nationality: string;
   birthday: string;
+  key?: number;
 }
 
 interface TableListProps {
-  data: Author[];
+  data: {
+    list: Author[];
+  };
+  fetchData: () => void;
 }
 
 function TableList(props: TableListProps) {
-  const { data } = props;
+  const { data, fetchData } = props;
+
+  data.list.forEach(author => author.key = author.id);
 
   return (
     <Table
-      dataSource={data}
+      dataSource={data.list}
       columns={[
         { title: 'id', dataIndex: 'id', key: 'id' },
         { title: '姓名', dataIndex: 'name', key: 'name' },
@@ -33,7 +39,7 @@ function TableList(props: TableListProps) {
             <span>
               <Link to={`/author/edit/${text.id}`}>编辑</Link>
               {' '}
-              <DelButton data={text} />
+              <DelButton data={text} onSuccess={fetchData} />
             </span>
           )
         }
@@ -42,4 +48,4 @@ function TableList(props: TableListProps) {
   );
 }
 
-export default TableList;
+export default fetch(TableList);

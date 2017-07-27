@@ -5,18 +5,13 @@ import Edit from './Edit';
 
 function Author(props: RouteComponentProps<string>) {
   const { url } = props.match;
-  const data = {
-    name: '巴金',
-    birthday: '2012-02-13',
-    nationality: '中国'
-  };
   return (
     <Switch>
       <Route path={`${url}/new`} component={Edit} />
       <Route
         path={`${url}/edit/:id`}
         render={
-          () => <Edit {...props} data={data} />}
+          ({ match }) => <Edit {...props} fetch={{ url: 'http://localhost:4000/api/author/' + match.params.id }} />}
       />
       <Route path={`${url}`} component={List} />
     </Switch>
