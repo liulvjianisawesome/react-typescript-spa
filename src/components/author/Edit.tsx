@@ -16,8 +16,8 @@ interface Props extends RouteComponentProps<string> {
 }
 
 class Edit extends React.Component<Props, {}> {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handelCancel = this.handelCancel.bind(this);
   }

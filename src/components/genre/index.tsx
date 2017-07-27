@@ -17,8 +17,8 @@ interface Props extends RouteComponentProps<string> {
 // }
 
 class Genre extends React.Component<Props, {}> {
-  constructor(props: Props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {};
     // this.renderEdit = this.renderEdit.bind(this);
   }
