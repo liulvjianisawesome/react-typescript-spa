@@ -17,7 +17,7 @@ interface Params {
 }
 
 class Genre extends React.Component<Props, {}> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {};
     this.renderEdit = this.renderEdit.bind(this);
