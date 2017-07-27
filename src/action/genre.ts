@@ -12,7 +12,7 @@ export interface Genre {
 export interface Action {
   type: string;
   status: number;
-  data?: Genre;
+  data?: Genre[];
   info?: string;
 }
 
@@ -56,7 +56,7 @@ export function getGenreList() {
 }
 
 // 保存数据接口
-export function saveGenre(body: Data, onSuccess: () => void) {
+export function saveGenre(body: Genre, onSuccess: () => void) {
   return (dispatch) => {
     refetch.post('/api/genre', body).then((res) => {
       if (res.data) {

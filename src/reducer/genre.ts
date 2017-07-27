@@ -4,9 +4,9 @@ const defaultState = {
   status: 0,
   data: [],
 };
-interface State {
+export interface State {
   status: number;
-  data?: Genre[];
+  data: Genre[];
   info?: string;
 }
 export default function (state: State = defaultState, action: Action) {
