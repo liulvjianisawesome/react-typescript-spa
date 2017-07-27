@@ -4,6 +4,7 @@ import * as refetch from 'refetch';
 export const GENRE_LIST = 'GENRE_LIST';
 
 export interface Genre {
+  key?: number;
   id: number;
   name: string;
   desc: string;
@@ -29,7 +30,7 @@ function handleList(status: number, data?: Genre[], info?: string): Action {
 function fetchList() {
   return (dispatch) => {
     dispatch(handleList(0));
-    refetch.get('/api/genres').then((res) => {
+    refetch.get('http://localhost:4000/api/genres').then((res) => {
       if (res.data) {
         dispatch(handleList(1, res.data));
       } else {
@@ -58,7 +59,7 @@ export function getGenreList() {
 // 保存数据接口
 export function saveGenre(body: Genre, onSuccess: () => void) {
   return (dispatch) => {
-    refetch.post('/api/genre', body).then((res) => {
+    refetch.post('http://localhost:4000/api/genre', body).then((res) => {
       if (res.data) {
         onSuccess();
 
@@ -77,7 +78,7 @@ export function saveGenre(body: Genre, onSuccess: () => void) {
 // 删除数据接口
 export function removeGenre(id: number) {
   return (dispatch, getState) => {
-    refetch.delete('/api/genre', { id }).then((res) => {
+    refetch.delete('http://localhost:4000/api/genre', { id }).then((res) => {
       if (res.data === 1) {
         message.success('删除成功');
 
