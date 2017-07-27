@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, Table, Button } from 'antd';
 import { Genre } from '../../action/genre';
 import * as H from 'history';
+import DelButton from './DelButton';
 
 interface Props {
   history: H.History;
@@ -33,7 +34,7 @@ function List(props: Props) {
               <span>
                 <Link to={`/author/edit/${text.id}`}>编辑</Link>
                 {' '}
-                <a>删除</a>
+                <DelButton data={text} />
               </span>
             )
           }
