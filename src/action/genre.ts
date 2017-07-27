@@ -16,7 +16,7 @@ export interface Action {
   info?: string;
 }
 
-function handleList(status: number, data?: Genre, info?: string) {
+function handleList(status: number, data?: Genre[], info?: string): Action {
   return {
     type: GENRE_LIST,
     status,
