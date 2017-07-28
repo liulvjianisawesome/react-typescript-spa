@@ -32,7 +32,7 @@ function List(props: Props) {
             width: 120,
             render: (text) => (
               <span>
-                <Link to={`/author/edit/${text.id}`}>编辑</Link>
+                <Link to={`/genre/edit/${text.id}`}>编辑</Link>
                 {' '}
                 <DelButton data={text} />
               </span>

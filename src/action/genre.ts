@@ -5,7 +5,7 @@ export const GENRE_LIST = 'GENRE_LIST';
 
 export interface Genre {
   key?: number;
-  id: number;
+  id?: number;
   name: string;
   desc: string;
 }

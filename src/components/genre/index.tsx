@@ -12,28 +12,27 @@ interface Props extends RouteComponentProps<string> {
   dispatch: Redux.Dispatch<void>;
 }
 
-// interface Params {
-//   id: number;
-// }
+interface Params {
+  id: number;
+}
 
 class Genre extends React.Component<Props, {}> {
   constructor() {
     super();
-    this.state = {};
-    // this.renderEdit = this.renderEdit.bind(this);
+    this.renderEdit = this.renderEdit.bind(this);
   }
 
   componentDidMount() {
     this.props.dispatch(getGenreList());
   }
 
-  // renderEdit({ history, match }: RouteComponentProps<Params>) {
-  //   const { genre } = this.props;
+  renderEdit({ match }: RouteComponentProps<Params>) {
+    const { genre } = this.props;
 
-  //   // 这里没有从服务端获取，而是从list里面获取的单条数据
-  //   const data = genre.data.find(d => d.id === match.params.id);
-  //   return <Edit history={history} data={data} />;
-  // }
+    // 这里没有从服务端获取，而是从list里面获取的单条数据
+    const data = genre.data.find(d => d.id === Number(match.params.id));
+    return <Edit history={this.props.history} data={data} />;
+  }
 
   render() {
     const { genre, history, match } = this.props;
@@ -49,8 +48,8 @@ class Genre extends React.Component<Props, {}> {
 
     return (
       <Switch>
-        <Route path={`${url}/new`} component={Edit} />
-        <Route path={`${url}/edit/:id`} component={Edit} />
+        <Route path={`${url}/new`} render={() => <Edit history={history} data={{ name: '', desc: '' }} />} />
+        <Route path={`${url}/edit/:id`} render={this.renderEdit} />
         <Route
           path={url}
           render={() => <List history={history} data={genre.data} />}
