@@ -60,8 +60,7 @@ class Genre extends React.Component<Props, {}> {
 }
 
 const mapStateToProps = (state) => {
-  const { genre } = state;
-  return { genre };
+  return { genre: state.genre };
 };
 
 export default connect(mapStateToProps)(Genre);

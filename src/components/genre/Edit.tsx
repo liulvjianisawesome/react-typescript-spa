@@ -7,17 +7,13 @@ import { saveGenre } from '../../action/genre';
 import { Genre } from '../../action/genre';
 
 interface Props extends RouteComponentProps {
-  dispatch: Redux.Dispatch<string>;
+  dispatch: Redux.Dispatch<void>;
   data: Genre;
   form: any;
   history: H.History;
 }
 
-interface State {
-  data: Genre;
-}
-
-class Edit extends React.Component<Props, State> {
+class Edit extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
