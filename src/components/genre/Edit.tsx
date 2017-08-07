@@ -3,7 +3,7 @@ import * as H from 'history';
 import * as Redux from 'redux';
 import { connect, RouteComponentProps } from 'react-redux';
 import { Card, Form, Button, Input } from 'antd';
-import { saveGenre } from '../../action/genre';
+// import { saveGenre } from '../../action/genre';
 import { Genre } from '../../action/genre';
 
 interface Props extends RouteComponentProps {
@@ -21,8 +21,8 @@ class Edit extends React.Component<Props, {}> {
   }
 
   handleSubmit() {
-    const data = this.props.form.getFieldsValue();
-    this.props.dispatch(saveGenre(data, this.props.history.goBack));
+    // const data = this.props.form.getFieldsValue();
+    // this.props.dispatch(saveGenre(data, this.props.history.goBack));
   }
 
   handleCancel() {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal } from 'antd';
 import { connect } from 'react-redux';
-import { removeGenre } from '../../action/genre';
+// import { removeGenre } from '../../action/genre';
 import * as Redux from 'redux';
 
 interface Props {
@@ -33,8 +33,8 @@ class DelButton extends React.Component<Props, State> {
     this.setState({
       visible: false,
     });
-    const { data, dispatch } = this.props;
-    dispatch(removeGenre(data.id));
+    // const { data, dispatch } = this.props;
+    // dispatch(removeGenre(data.id));
   }
   handleCancel() {
     this.setState({

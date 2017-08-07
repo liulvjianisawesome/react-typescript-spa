@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Redux from 'redux';
 import { connect } from 'react-redux';
-import { getGenreList } from '../../action/genre';
+// import { getGenreList } from '../../action/genre';
 import { State } from '../../reducer/genre';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import List from './List';
@@ -23,7 +23,7 @@ class Genre extends React.Component<Props, {}> {
   }
 
   componentDidMount() {
-    this.props.dispatch(getGenreList());
+    this.props.dispatch({ type: 'getGenreList' });
   }
 
   renderEdit({ match }: RouteComponentProps<Params>) {
