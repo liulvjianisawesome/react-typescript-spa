@@ -117,11 +117,6 @@ module.exports = {
       {
         test: /\.js$/,
         loader: require.resolve('source-map-loader'),
-        options: {
-          plugins: [
-            ["import", { "libraryName": "antd", "style": "css" }],
-          ],
-        },
         enforce: 'pre',
         include: paths.appSrc,
       },
@@ -173,6 +168,11 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         include: paths.appSrc,
         loader: require.resolve('ts-loader'),
+        options: {
+          plugins: [
+            ["import", { "libraryName": "antd", "style": "css" }],
+          ],
+        },
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
