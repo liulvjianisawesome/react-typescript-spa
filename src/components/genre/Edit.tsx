@@ -21,8 +21,8 @@ class Edit extends React.Component<Props, {}> {
   }
 
   handleSubmit() {
-    // const data = this.props.form.getFieldsValue();
-    // this.props.dispatch(saveGenre(data, this.props.history.goBack));
+    const data = this.props.form.getFieldsValue();
+    this.props.dispatch({ type: 'saveGenre', body: data, onSuccess: this.props.history.goBack });
   }
 
   handleCancel() {
