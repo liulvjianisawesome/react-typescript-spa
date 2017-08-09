@@ -23,9 +23,7 @@ function* getGenreList() {
   }
 }
 
-function* saveGenre() {
-  const action = yield take('saveGenre');
-
+function* saveGenre(action) {
   const { body, onSuccess } = action;
 
   try {
@@ -43,10 +41,30 @@ function* saveGenre() {
 
 }
 
-export default function* () {
-  yield* getGenreList();
-  while (true) {
-    yield* saveGenre();
-  }
+function* removeGenre(action) {
+  const { id } = action;
 
+  try {
+    const res = yield call(axios.delete, 'http://localhost:4000/api/genre', { id });
+    if (res.data.data === 1) {
+      message.success('删除成功');
+
+      const state = yield select();
+      const data = state.genre.data.filter(d => d.id !== id);
+      data.forEach((genre, index) => {
+        genre.id = (index + 1);
+      });
+
+      yield put(handleList(1, data));
+    }
+  } catch (err) {
+    message.error(err.message);
+  }
+}
+
+export default function* () {
+  yield getGenreList();
+
+  yield takeEvery('saveGenre', saveGenre);
+  yield takeEvery('removeGenre', removeGenre);
 }
